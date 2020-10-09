@@ -15,7 +15,15 @@ class App extends Component {
   // a 'method' is a function belonging to a class
   switchNameHandler = () => {
     // console.log('Was Clicked');
-    this.state.
+    // DON'T SET MUTATE DIRECTLY ->: this.state.people[0].name = 'Dr. Phill';
+    this.setState({
+      people: [
+        { name: 'Dr. Phill', age: 34 },
+        { name: 'Maria', age: 29 },
+        { name: 'Zoë', age: 8 },
+        { name: 'Adette', age: 7 }
+      ]
+    })
   }
 
   render() {
