@@ -14,7 +14,6 @@ const person = ( props ) => {
     );
 };
 
-
 export default person;
 
 // by the time ReactDOM.render does its thing. The function component above will be a normal HTML element on the DOM. This can be verified by inpecting the DOM in chrome.

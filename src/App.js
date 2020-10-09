@@ -1,46 +1,54 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Person from './Person/Person'
 
-class App extends Component {
-  state = {
+const App = props => {
+  useState({
     people: [
       { name: 'Ryan', age: 34 },
       { name: 'Maria', age: 29 },
       { name: 'Zoë', age: 8 },
       { name: 'Adette', age: 6 }
-    ]
-  }
+    ],
+    otherState: 'some other value'
+  });
 
-  // a 'method' is a function belonging to a class
-  switchNameHandler = () => {
-    // console.log('Was Clicked');
-    // DON'T SET MUTATE DIRECTLY ->: this.state.people[0].name = 'Dr. Phill';
-    this.setState({
-      people: [
-        { name: 'Dr. Phill', age: 34 },
-        { name: 'Maria', age: 29 },
-        { name: 'Zoë', age: 8 },
-        { name: 'Adette', age: 7 }
-      ]
-    })
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <h1>Hi, I'm a React App!!</h1>
-        <p>This is really working!</p>
-        <Person name={this.state.people[0].name} age={this.state.people[0].age} />
-        <button onClick={this.switchNameHandler}>Switch Name</button>
-        <Person name={this.state.people[1].name} age={this.state.people[1].age} >My Hobbies: Food</Person>
-        <Person name={this.state.people[2].name} age={this.state.people[2].age}/>
-        <Person name={this.state.people[3].name} age={this.state.people[3].age}/>
-      </div>
-    );
+  return (
+    <div className="App">
+      <h1>Hi, I'm a React App!!</h1>
+      <p>This is really working!</p>
+      <Person name={this.state.people[0].name} age={this.state.people[0].age} />
+      <button onClick={this.switchNameHandler}>Switch Name</button>
+      <Person name={this.state.people[1].name} age={this.state.people[1].age} >My Hobbies: Food</Person>
+      <Person name={this.state.people[2].name} age={this.state.people[2].age}/>
+      <Person name={this.state.people[3].name} age={this.state.people[3].age}/>
+    </div>
+  );
     // the code above gets compiled to the code below. JSX above is much less cumbersome to write and easier to maintain. Importing 'React' allows us to write with JSX.
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'))
-  }
 }
 
 export default App;
+
+state = {
+  people: [
+    { name: 'Ryan', age: 34 },
+    { name: 'Maria', age: 29 },
+    { name: 'Zoë', age: 8 },
+    { name: 'Adette', age: 6 }
+  ]
+}
+
+// a 'method' is a function belonging to a class
+switchNameHandler = () => {
+  // console.log('Was Clicked');
+  // DON'T SET MUTATE DIRECTLY ->: this.state.people[0].name = 'Dr. Phill';
+  this.setState({
+    people: [
+      { name: 'Dr. Phill', age: 34 },
+      { name: 'Maria', age: 29 },
+      { name: 'Zoë', age: 8 },
+      { name: 'Adette', age: 7 }
+    ]
+  })
+}
