@@ -39,15 +39,26 @@ class App extends Component {
   
 
   render() {
+    // inline styling is useful for scoping the style to the element you want
+    const style = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: '1x solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    };
+
     return (
       <div className="App">
         <h1>Hi, I'm a React App!!</h1>
         <p>This is really working!</p>
+        <button
+          style={style} 
+          onClick={this.switchNameHandler.bind(this, 'Dr. Phill')}>Switch Name</button>
         <Person 
           click={() => this.switchNameHandler('RyGuy')} 
           name={this.state.people[0].name} 
           age={this.state.people[0].age} />
-        <button onClick={this.switchNameHandler.bind(this, 'Dr. Phill')}>Switch Name</button>
         <Person 
           nameChanged={this.nameChangedHandler}
           name={this.state.people[1].name} 
