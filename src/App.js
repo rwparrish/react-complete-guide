@@ -58,24 +58,14 @@ class App extends Component {
     let people = null;
 
     if (this.state.showPeople) {
-
-      people = (
+        people = (
           <div>
-            <Person 
-              click={() => this.switchNameHandler('RyGuy')} 
-              name={this.state.people[0].name} 
-              age={this.state.people[0].age} />
-            <Person 
-              nameChanged={this.nameChangedHandler}
-              name={this.state.people[1].name} 
-              age={this.state.people[1].age} >My Hobbies: Food</Person>
-            <Person 
-              name={this.state.people[2].name} 
-              age={this.state.people[2].age}/>
-            <Person 
-              name={this.state.people[3].name} 
-              age={this.state.people[3].age}/>
-        </div>
+            {this.state.people.map(people => { 
+              return <Person 
+                      name={people.name} 
+                      age={people.age}/>
+                })};
+          </div>
       );
     }
 
@@ -100,3 +90,17 @@ export default App;
 
 // a 'method' is a function belonging to a class
 
+{/* <Person
+click={() => this.switchNameHandler('RyGuy')} 
+name={this.state.people[0].name} 
+age={this.state.people[0].age} />
+<Person 
+nameChanged={this.nameChangedHandler}
+name={this.state.people[1].name} 
+age={this.state.people[1].age} >My Hobbies: Food</Person>
+<Person 
+name={this.state.people[2].name} 
+age={this.state.people[2].age}/>
+<Person 
+name={this.state.people[3].name} 
+age={this.state.people[3].age}/> */}
