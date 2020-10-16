@@ -5,11 +5,14 @@ import Person from './Person/Person'
 class App extends Component {
 
   state = { people: [
-    { name: 'Ryan', age: 34 },
-    { name: 'Maria', age: 29 },
-    { name: 'Zoë', age: 8 },
-    { name: 'Adette', age: 6 }
-  ] }
+      { name: 'Ryan', age: 34 },
+      { name: 'Maria', age: 29 },
+      { name: 'Zoë', age: 8 },
+      { name: 'Adette', age: 6 }
+    ],
+    otherState: 'some other state',
+    showPeople: false
+}
   // React hooks 'useState' returns an array with two elements - ALWAYS - 1. current state 2. function to update state for React to rerender component
   // when using Hooks the function responsible for changing state does not merge new state with old - it replaces it
   // when using React Hooks setState should be used multiple times for each 'slice' of state
@@ -36,7 +39,11 @@ class App extends Component {
       ]
     } )
   };
-  
+
+  togglePeoepleHandler = () => {
+    const doesShow = this.state.showPeople
+    this.setState({showPeople: !doesShow});
+  }
 
   render() {
     // inline styling is useful for scoping the style to the element you want
@@ -54,21 +61,26 @@ class App extends Component {
         <p>This is really working!</p>
         <button
           style={style} 
-          onClick={this.switchNameHandler.bind(this, 'Dr. Phill')}>Switch Name</button>
-        <Person 
-          click={() => this.switchNameHandler('RyGuy')} 
-          name={this.state.people[0].name} 
-          age={this.state.people[0].age} />
-        <Person 
-          nameChanged={this.nameChangedHandler}
-          name={this.state.people[1].name} 
-          age={this.state.people[1].age} >My Hobbies: Food</Person>
-        <Person 
-          name={this.state.people[2].name} 
-          age={this.state.people[2].age}/>
-        <Person 
-          name={this.state.people[3].name} 
-          age={this.state.people[3].age}/>
+          onClick={this.togglePeoepleHandler}>Toggle People</button>
+          { 
+            this.state.showPeople ?
+              <div>
+                <Person 
+                  click={() => this.switchNameHandler('RyGuy')} 
+                  name={this.state.people[0].name} 
+                  age={this.state.people[0].age} />
+                <Person 
+                  nameChanged={this.nameChangedHandler}
+                  name={this.state.people[1].name} 
+                  age={this.state.people[1].age} >My Hobbies: Food</Person>
+                <Person 
+                  name={this.state.people[2].name} 
+                  age={this.state.people[2].age}/>
+                <Person 
+                  name={this.state.people[3].name} 
+                  age={this.state.people[3].age}/>
+            </div> : null
+          }
       </div>
     );
   }
