@@ -16,18 +16,18 @@ class App extends Component {
   // React hooks 'useState' returns an array with two elements - ALWAYS - 1. current state 2. function to update state for React to rerender component
   // when using Hooks the function responsible for changing state does not merge new state with old - it replaces it
   // when using React Hooks setState should be used multiple times for each 'slice' of state
-  switchNameHandler = ( newName ) => {
-    // console.log('Was Clicked');
-    // DON'T SET MUTATE DIRECTLY ->: this.state.people[0].name = 'Dr. Phill';
-    this.setState( {
-      people: [
-        { name: newName, age: 34 },
-        { name: 'Maria', age: 29 },
-        { name: 'Zoë', age: 8 },
-        { name: 'Adette', age: 7 }
-      ]
-    } )
-  };
+  // switchNameHandler = ( newName ) => {
+  //   // console.log('Was Clicked');
+  //   // DON'T SET MUTATE DIRECTLY ->: this.state.people[0].name = 'Dr. Phill';
+  //   this.setState( {
+  //     people: [
+  //       { name: newName, age: 34 },
+  //       { name: 'Maria', age: 29 },
+  //       { name: 'Zoë', age: 8 },
+  //       { name: 'Adette', age: 7 }
+  //     ]
+  //   } )
+  // };
 
   nameChangedHandler = event => {
     this.setState( {
@@ -39,6 +39,12 @@ class App extends Component {
       ]
     } )
   };
+
+  deletePersonHandler = (personIndex) => {
+    const people = this.state.people;
+    people.splice(personIndex, 1);
+    this.setState({people: people})
+  }
 
   togglePeoepleHandler = () => {
     const doesShow = this.state.showPeople
@@ -60,11 +66,12 @@ class App extends Component {
     if (this.state.showPeople) {
         people = (
           <div>
-            {this.state.people.map(people => { 
+            {this.state.people.map((people, index) => { 
               return <Person 
+                      click={() => this.deletePersonHandler(index)}
                       name={people.name} 
                       age={people.age}/>
-                })};
+                })}
           </div>
       );
     }
