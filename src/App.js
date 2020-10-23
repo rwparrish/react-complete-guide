@@ -39,20 +39,17 @@ class App extends Component {
     // 2. make a copy of the original person from people array so as not to mutate original data(state)
     const person = {
       ...this.state.people[personIndex]
-    }
+    };
     // below using Object.assign works the same as above - above is more modern
     // const person = Object.assign({}, this.state.people[personIndex])
-
-
+    // 3. update the name of the person that has been found in the original array
+    person.name = event.target.value;
+    // 4. update the original array with the new person
+    const people = [...this.state.people];
+    people[personIndex] = person
     
     this.setState( {
-      people: [
-        { name: 'Ryan', age: 34 },
-        { name: event.target.value, age: 29 },
-        { name: 'Zoë', age: 8 },
-        { name: 'Adette', age: 7 }
-      ]
-    } )
+      people: people } )
   };
 
   deletePersonHandler = (personIndex) => {
@@ -95,7 +92,7 @@ class App extends Component {
                 click={() => this.deletePersonHandler(index)}
                 name={person.name} 
                 age={person.age} 
-                nameChange={(event) => this.nameChangeHandler(event, personId)} />
+                nameChange={(event) => this.nameChangeHandler(event, person.id)} />
             })}
           </div>
       );
