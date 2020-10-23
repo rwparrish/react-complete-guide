@@ -41,11 +41,15 @@ class App extends Component {
   // };
 
   deletePersonHandler = (personIndex) => {
-  // retrieve the orignal array of people
-    const people = this.state.people;
+  // retrieve the orignal array of people USING slice with no arguments make a copy of the original data
+  // this is important because we do not want to mutate the original data
+    // const people = this.state.people.slice();
+  // using the spread operator is more modern and accomplishes the same thing as the code above
+  // 1. create a new array 2. spread out the original data and put it into the new array
+    const people = [...this.state.people]
   // remove on person from the array
     people.splice(personIndex, 1);
-  // set the value of people in state to the new people reference
+  // set the value of people in state to the new people array
     this.setState({people: people})
   }
 
