@@ -29,20 +29,23 @@ class App extends Component {
   //   } )
   // };
 
-  nameChangedHandler = event => {
-    this.setState( {
-      people: [
-        { name: 'Ryan', age: 34 },
-        { name: event.target.value, age: 29 },
-        { name: 'Zoë', age: 8 },
-        { name: 'Adette', age: 7 }
-      ]
-    } )
-  };
+  // nameChangedHandler = event => {
+  //   this.setState( {
+  //     people: [
+  //       { name: 'Ryan', age: 34 },
+  //       { name: event.target.value, age: 29 },
+  //       { name: 'Zoë', age: 8 },
+  //       { name: 'Adette', age: 7 }
+  //     ]
+  //   } )
+  // };
 
   deletePersonHandler = (personIndex) => {
+  // retrieve the orignal array of people
     const people = this.state.people;
+  // remove on person from the array
     people.splice(personIndex, 1);
+  // set the value of people in state to the new people reference
     this.setState({people: people})
   }
 
@@ -66,12 +69,12 @@ class App extends Component {
     if (this.state.showPeople) {
         people = (
           <div>
-            {this.state.people.map((people, index) => { 
-              return <Person 
-                      click={() => this.deletePersonHandler(index)}
-                      name={people.name} 
-                      age={people.age}/>
-                })}
+            {this.state.people.map((person, index) => {
+              return <Person
+                click={() => this.deletePersonHandler(index)}
+                name={person.name} 
+                age={person.age}/>
+            })}
           </div>
       );
     }
