@@ -95,7 +95,7 @@ class App extends Component {
     // inline styling is useful for scoping the style to the element you want
     const style = {
       backgroundColor: 'green',
-      textColor: 'white',
+      color: 'white',
       font: 'inherit',
       border: '1x solid blue',
       padding: '8px',
@@ -121,10 +121,19 @@ class App extends Component {
       style.backgroundColor = 'red';
     }
 
+    const classes = [];
+    if (this.state.people.length <= 2 ) {
+      classes.push('red'); // classes = ['red']
+    }
+    if(this.state.people.length <= 1 ) {
+      classes.push('bold'); // classes = ['red', 'bold']
+    }
+
+
     return (
       <div className="App">
         <h1>Hi, I'm a React App!!</h1>
-        <p>This is really working!</p>
+        <p className={classes.join(' ')}>This is really working!</p>
         <button
           style={style} 
           onClick={this.togglePeoepleHandler}>Toggle People</button>
