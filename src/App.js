@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import person from './Person/Person';
 import Person from './Person/Person'
 
 class App extends Component {
@@ -29,28 +30,48 @@ class App extends Component {
   //   } )
   // };
 
+  // nameChangeHandler = (event, personId) => {
+  //   // 1. find the correct person in the original state
+  //   const personIndex = this.state.people.findIndex(person => {
+  //   // return true or false depending if person is found or not
+  //   // below retunrs true
+  //      return person.id === personId
+  //   })
+  //   // 2. make a copy of the original person from people array so as not to mutate original data(state)
+  //   const person = {
+  //     ...this.state.people[personIndex]
+  //   };
+  //   // below using Object.assign works the same as above - above is more modern
+  //   // const person = Object.assign({}, this.state.people[personIndex])
+  //   // 3. update the name of the person that has been found in the original array
+  //   person.name = event.target.value;
+  //   // 4. update the original array with the new person
+  //   const people = [...this.state.people];
+  //   people[personIndex] = person
+    
+  //   this.setState( {
+  //     people: people } )
+  // };
+  
   nameChangeHandler = (event, personId) => {
-    // 1. find the correct person in the original state
-    const personIndex = this.state.people.findIndex(person => {
-    // return true or false depending if person is found or not
-    // below retunrs true
-       return person.id === personId
-    })
-    // 2. make a copy of the original person from people array so as not to mutate original data(state)
+    const personIndex = this.state.people.findIndex(p => {
+      return p.id === personId
+    });
+
     const person = {
       ...this.state.people[personIndex]
     };
-    // below using Object.assign works the same as above - above is more modern
-    // const person = Object.assign({}, this.state.people[personIndex])
-    // 3. update the name of the person that has been found in the original array
+
     person.name = event.target.value;
-    // 4. update the original array with the new person
+
     const people = [...this.state.people];
-    people[personIndex] = person
-    
-    this.setState( {
-      people: people } )
+    people[personIndex] = person;
+
+    this.setState({
+      people: people
+    });
   };
+    
 
   deletePersonHandler = (personIndex) => {
   // retrieve the orignal array of people USING slice with no arguments make a copy of the original data
