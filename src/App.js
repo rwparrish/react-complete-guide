@@ -94,7 +94,8 @@ class App extends Component {
   render() {
     // inline styling is useful for scoping the style to the element you want
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      textColor: 'white',
       font: 'inherit',
       border: '1x solid blue',
       padding: '8px',
@@ -117,6 +118,7 @@ class App extends Component {
             })}
           </div>
       );
+      style.backgroundColor = 'red';
     }
 
     return (
