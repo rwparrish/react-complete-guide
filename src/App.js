@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import './App.css';
 import Person from './Person/Person';
 
+const StyledButton = styled.button`
+  background-color: ${props => props.altColor ? 'red' : 'green'};
+  color: white;
+  font: inherit;
+  border: 1x solid blue;
+  padding: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${props => props.altColor ? 'salmon' : 'lightgreen'};
+    color: black;
+  }
+`;
 class App extends Component {
 
   state = { people: [
@@ -121,12 +135,12 @@ class App extends Component {
             })}
           </div>
       );
-      style.backgroundColor = 'red';
-      // below - beacuse ':hover' STRING property of the style object square brackets must be used to access it 
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      }
+      // style.backgroundColor = 'red';
+      // // below - beacuse ':hover' STRING property of the style object square brackets must be used to access it 
+      // style[':hover'] = {
+      //   backgroundColor: 'salmon',
+      //   color: 'black'
+      // };
     }
 
     const classes = [];
@@ -142,9 +156,9 @@ class App extends Component {
       <div className="App">
         <h1>Hi, I'm a React App!!</h1>
         <p className={classes.join(' ')}>This is really working!</p>
-        <button
-          style={style} 
-          onClick={this.togglePeoepleHandler}>Toggle People</button>
+        <StyledButton altColor={this.state.showPeople} onClick={this.togglePeoepleHandler}>
+          Toggle People
+        </StyledButton>
         {people}
       </div>
     );
