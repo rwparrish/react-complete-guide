@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 
 class App extends Component {
 
@@ -123,6 +123,7 @@ class App extends Component {
           </div>
       );
       style.backgroundColor = 'red';
+      // below - beacuse ':hover' STRING property of the style object square brackets must be used to access it 
       style[':hover'] = {
         backgroundColor: 'salmon',
         color: 'black'
@@ -139,15 +140,17 @@ class App extends Component {
 
 
     return (
-      <div className="App">
-        <h1>Hi, I'm a React App!!</h1>
-        <p className={classes.join(' ')}>This is really working!</p>
-        <button
-          style={style} 
-          onClick={this.togglePeoepleHandler}>Toggle People</button>
-          {people}
-      </div>
-    );
+      <StyleRoot>
+        <div className="App">
+          <h1>Hi, I'm a React App!!</h1>
+          <p className={classes.join(' ')}>This is really working!</p>
+          <button
+            style={style} 
+            onClick={this.togglePeoepleHandler}>Toggle People</button>
+            {people}
+        </div>
+      </StyleRoot>
+     );
   }
     // the code above gets compiled to the code below. JSX above is much less cumbersome to write and easier to maintain. Importing 'React' allows us to write with JSX.
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'))
