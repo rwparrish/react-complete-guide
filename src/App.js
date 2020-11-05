@@ -156,7 +156,7 @@ class App extends Component {
       <div className="App">
         <h1>Hi, I'm a React App!!</h1>
         <p className={classes.join(' ')}>This is really working!</p>
-        <button className='button' onClick={this.togglePeoepleHandler}>
+        <button className="button" onClick={this.togglePeoepleHandler}>
           Toggle People
         </button>
         {people}
