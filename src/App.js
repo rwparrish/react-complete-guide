@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import classes from './App.css';
 import './App.css';
 import Person from './Person/Person';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+
 
 // const StyledButton = styled.button`
 //   background-color: ${props => props.altColor ? 'red' : 'green'};
@@ -128,12 +130,13 @@ class App extends Component {
           <div>
             {/* mapping an array into JSX elements below */}
             {this.state.people.map((person, index) => {
-              return <Person
-                key={person.id}
-                click={() => this.deletePersonHandler(index)}
-                name={person.name} 
-                age={person.age} 
-                nameChange={(event) => this.nameChangeHandler(event, person.id)} />
+              return <ErrorBoundary key={person.id} >
+                <Person 
+                  click={() => this.deletePersonHandler(index)}
+                  nameChange={(event) => this.nameChangeHandler(event, person.id)} />
+                  name={person.name} 
+                  age={person.age} 
+                </ErrorBoundary>
             })}
           </div>
       );
