@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import classes from './App.css';
 import './App.css';
 import Person from '../components/People/Person/Person';
+import People from '../components/People/People'
 
 // const StyledButton = styled.button`
 //   background-color: ${props => props.altColor ? 'red' : 'green'};
@@ -121,20 +122,15 @@ class App extends Component {
     };
 
     let people = null;
-    let buttonClasses = [classes.button]
+    
 
     if (this.state.showPeople) {
         people = (
           <div>
-            {/* mapping an array into JSX elements below */}
-            {this.state.people.map((person, index) => {
-              return <Person
-                key={person.id}
-                click={() => this.deletePersonHandler(index)}
-                name={person.name} 
-                age={person.age} 
-                nameChange={(event) => this.nameChangeHandler(event, person.id)} />
-            })}
+            <People 
+              people={this.state.people}
+              clicked={this.deletePersonHandler}
+              changed={this.nameChangeHandler} />
           </div>
       );
       // style.backgroundColor = 'red';
@@ -143,25 +139,14 @@ class App extends Component {
       //   backgroundColor: 'salmon',
       //   color: 'black'
       // };
-      buttonClasses.push(classes.Red);
+      
     }
 
-    const assignedClasses = [];
-    if (this.state.people.length <= 2 ) {
-      assignedClasses.push(classes.red); // classes = ['red']
-    }
-    if(this.state.people.length <= 1 ) {
-      assignedClasses.push(classes.bold); // classes = ['red', 'bold']
-    }
+    
 
 
     return (
       <div className={classes.App}>
-        <h1>Hi, I'm a React App!!</h1>
-        <p className={assignedClasses.join(' ')}>This is really working!</p>
-        <button className={buttonClasses.join(' ')} onClick={this.togglePeoepleHandler}>
-          Toggle People
-        </button>
         {people}
       </div>
     );
