@@ -4,6 +4,7 @@ import classes from './App.css';
 import './App.css';
 import Person from '../components/People/Person/Person';
 import People from '../components/People/People'
+import Cockpit from '../components/Cockpit/Cockpit'
 
 // const StyledButton = styled.button`
 //   background-color: ${props => props.altColor ? 'red' : 'green'};
@@ -125,28 +126,22 @@ class App extends Component {
     
 
     if (this.state.showPeople) {
-        people = (
-          <div>
-            <People 
+        people = <People 
               people={this.state.people}
               clicked={this.deletePersonHandler}
               changed={this.nameChangeHandler} />
-          </div>
-      );
-      // style.backgroundColor = 'red';
+    }
+     // style.backgroundColor = 'red';
       // // below - beacuse ':hover' STRING property of the style object square brackets must be used to access it 
       // style[':hover'] = {
       //   backgroundColor: 'salmon',
       //   color: 'black'
       // };
-      
-    }
-
-    
-
-
     return (
       <div className={classes.App}>
+        <Cockpit
+          showPeople={this.state.showPeople}
+          people={this.state.people} />
         {people}
       </div>
     );
