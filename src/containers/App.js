@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 // import styled from 'styled-components';
 import classes from './App.css';
 import './App.css';
-import Person from '../components/People/Person/Person';
 import People from '../components/People/People'
 import Cockpit from '../components/Cockpit/Cockpit'
 
@@ -127,9 +126,9 @@ class App extends Component {
 
     if (this.state.showPeople) {
         people = <People 
-              people={this.state.people}
-              clicked={this.deletePersonHandler}
-              changed={this.nameChangeHandler} />
+          people={this.state.people}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangeHandler} />
     }
      // style.backgroundColor = 'red';
       // // below - beacuse ':hover' STRING property of the style object square brackets must be used to access it 
@@ -141,7 +140,8 @@ class App extends Component {
       <div className={classes.App}>
         <Cockpit
           showPeople={this.state.showPeople}
-          people={this.state.people} />
+          people={this.state.people}
+          clicked={this.togglePeoepleHandler} />
         {people}
       </div>
     );
