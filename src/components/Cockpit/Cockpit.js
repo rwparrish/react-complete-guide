@@ -11,7 +11,7 @@ import classes from './Cockpit.css';
      return () => {
        console.log('[Cockpit.js] cleanup useEffect')
      }
-    //  Http request...
+    // Http request...
     // tricky to use becuase it combines componentDidMount and componentDidUdate
     // passing an empty array to the second arguemnt (array of which data are used in effect) 
     // tells React to only useEffect when the component rerenders the first time - making it componentDidMount only 
@@ -23,10 +23,10 @@ import classes from './Cockpit.css';
         buttonClasses = classes.Red
     }
 
-    if (props.people.length <= 2 ) {
+    if (props.peopleLength <= 2 ) {
       assignedClasses.push(classes.red); // classes = ['red']
     }
-    if(props.people.length <= 1 ) {
+    if(props.peopleLength <= 1 ) {
       assignedClasses.push(classes.bold); // classes = ['red', 'bold']
     }
 
@@ -39,4 +39,4 @@ import classes from './Cockpit.css';
     )
 }
 
-export default cockpit
+export default React.memo(cockpit) 
