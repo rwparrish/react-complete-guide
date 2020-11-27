@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import classes from "./Person.css"
+import Aux from "../../../hoc/Aux"
 
 
 class Person extends Component {
     render() {
         return (
-            // <div className={classes.Person}>
-            // wrapping multiple elements in brackets means we are just making a couple of calls to reactCreateElement()
-            // JSX is syntactic sugar for reactCreateElement
-            [
-                <p key="id1" onClick={this.props.click}>I'm {this.props.name} and I am {this.props.age} years old!</p>,
-                <p key="id2">{this.props.children}</p>,
-            <input key="1d3" type="text" onChange={this.props.nameChange} value={this.props.name}/> ]
-            // </div>
+            <Aux>
+                {/* <div className={classes.Person}> */}
+                    <p onClick={this.props.click}>I'm {this.props.name} and I am {this.props.age} years old!</p>
+                    <p>{this.props.children}</p>
+                    <input type="text" onChange={this.props.nameChange} value={this.props.name}/>
+                {/* </div> */}
+            </Aux>
         );
     };
 };
